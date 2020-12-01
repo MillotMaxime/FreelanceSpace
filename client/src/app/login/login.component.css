@@ -1,0 +1,20 @@
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin-top: 18% !important;
+    margin: auto;
+    text-align: center !important;
+    border-color: black;
+    border: solid 1px;
+}
+
+#inputEmail {
+    margin-top: 3% !important;
+    margin-bottom: 3% !important;
+}
+
+#inputPassword {
+    margin-top: 3% !important;
+    margin-bottom: 3% !important;
+}

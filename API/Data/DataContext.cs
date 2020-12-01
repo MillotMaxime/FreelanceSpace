@@ -10,6 +10,8 @@ namespace API.Data
         }
 
         public DbSet<AppUser> Users { get; set; }
+        public DbSet<Freelance> Freelance { get; set; }
+        public DbSet<Business> Business { get; set; }
         
     }
 }

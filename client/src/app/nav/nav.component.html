@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container d-flex flex-column flex-md-row justify-content-between">
+        <a class="navbar-brand" routerLink="">Freelance-Space</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <li *ngIf="(accountService.currentUser$ | async)" class="navbar-nav nav-item">
+            <a class="nav-link">Nos offres</a>
+        </li>
+        <li *ngIf="(accountService.currentUser$ | async)" class="navbar-nav nav-item">
+            <a class="nav-link">Nos offres</a>
+        </li>
+        <li *ngIf="(accountService.currentUser$ | async)" class="navbar-nav nav-item">
+            <a class="nav-link">Nos offres</a>
+        </li>
+        <div class="navbar-nav nav-item dropdown" *ngIf="accountService.currentUser$ | async" dropdown>
+            <a class="nav-link" dropdownToggle>Mon compte</a>
+            <div class="dropdown-menu mt-3" *dropdownMenu>
+                <a class="dropdown-item" routerLink="/myCompte" >Mon Profil</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" routerLink="/employement" >Mes emplois</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" routerLink="/messages" >Mes messages</a>
+            </div>
+        </div>
+        <li *ngIf="accountService.currentUser$ | async" class="navbar-nav nav-item">
+            <a class="nav-link" routerLink="/contactUs">Nous contacter</a>
+        </li>
+        <li *ngIf="accountService.currentUser$ | async" class="navbar-nav nav-item">
+            <a class="nav-link" routerLink="/premium">Passer premium</a>
+        </li>
+        <li *ngIf="accountService.currentUser$ | async" class="navbar-nav nav-item">
+            <a class="nav-link" (click)="logout()">Déconnexion</a>
+        </li>
+        <li *ngIf="(accountService.currentUser$ | async) === null" class="navbar-nav nav-item">
+            <a class="nav-link" (click)="login()" routerLink="/login">Connexion</a>
+        </li>
+        
+
+        <!--<div class="dropdown" *ngIf="accountService.currentUser$ | async" dropdown>
+            <a class="dorpdown-toggle text-light" dropdownToggle>Welcome user</a>
+            <div class="dropdown-menu mt-3" *dropdownMenu>
+                <a class="dropdown-item">Edit Profil</a>
+                <div class="dropdown-divider"></div>
+            </div>
+        </div>-->
+        
+    </div>
+</nav>

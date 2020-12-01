@@ -22,6 +22,10 @@ namespace API.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
@@ -40,6 +44,31 @@ namespace API.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("AppUser");
+                });
+
+            modelBuilder.Entity("API.Entities.Business", b =>
+                {
+                    b.HasBaseType("API.Entities.AppUser");
+
+                    b.Property<string>("Activite")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("StatutJuridique")
+                        .HasColumnType("TEXT");
+
+                    b.HasDiscriminator().HasValue("Business");
+                });
+
+            modelBuilder.Entity("API.Entities.Freelance", b =>
+                {
+                    b.HasBaseType("API.Entities.AppUser");
+
+                    b.Property<int>("Age")
+                        .HasColumnType("INTEGER");
+
+                    b.HasDiscriminator().HasValue("Freelance");
                 });
 #pragma warning restore 612, 618
         }
