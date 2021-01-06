@@ -1,4 +1,4 @@
-<form #loginForm="ngForm" class="form-signin" (ngSubmit)="login()" autocomplete="off">
+<form *ngIf="!connected" #loginForm="ngForm" class="form-signin" (ngSubmit)="login()" autocomplete="off">
     <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">Please loggin</h1>
 
@@ -25,3 +25,8 @@
         <button class="btn btn-lg btn-default mr-2" (click)="cancel()" type="button">Cancel</button>
     </div>
 </form>
+
+
+<div *ngIf="connected" class="container">
+    <app-home></app-home>
+</div>

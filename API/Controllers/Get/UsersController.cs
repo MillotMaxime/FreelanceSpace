@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,6 +30,12 @@ namespace API.Controllers
         public async Task<ActionResult<AppUser>> GetUser(int id) 
         {
             return  await _context.Users.FindAsync(id);   
+        }
+
+        [HttpGet("isBusiness")]
+        public async Task<Business> userIsBusiness(string email) 
+        {
+            return await _context.Business.SingleOrDefaultAsync(x => x.Email == email.ToLower());
         }
     }
 }

@@ -9,7 +9,7 @@ import { NavComponent } from './nav/nav.component';
 import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './home/register/register.component';
 import { OffresListComponent } from './offres/offres-list/offres-list.component';
 import { OffreDetailComponent } from './offres/offre-detail/offre-detail.component';
 import { CreateOffreComponent } from './offres/create-offre/create-offre.component';
@@ -28,10 +28,16 @@ import { EmployementAchieveDetailComponent } from './compte/emploi/employementAc
 import { NextEmployementListComponent } from './compte/emploi/nextEmployement/next-employement-list/next-employement-list.component';
 import { NextEmployementDetailComponent } from './compte/emploi/nextEmployement/next-employement-detail/next-employement-detail.component';
 import { EmployementComponent } from './compte/emploi/employement/employement.component';
+import { LanguageComputerOffreComponent } from './offres/create-offre/language-computer-offre/language-computer-offre.component';
+import { LanguageSpeakOffreComponent } from './offres/create-offre/language-speak-offre/language-speak-offre.component';
+import { SalaryOffreComponent } from './offres/create-offre/salary-offre/salary-offre.component';
+import { PenaltyOffreComponent } from './offres/create-offre/penalty-offre/penalty-offre.component';
+import { TermsOffreComponent } from './offres/create-offre/terms-offre/terms-offre.component';
+import { LanguageComputerFavorisOffreComponent } from './offres/create-offre/language-computer-favoris-offre/language-computer-favoris-offre.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent, 
     NavComponent,
     HomeComponent,
     RegisterComponent,
@@ -52,7 +58,13 @@ import { EmployementComponent } from './compte/emploi/employement/employement.co
     EmployementAchieveDetailComponent,
     NextEmployementListComponent,
     NextEmployementDetailComponent,
-    EmployementComponent
+    EmployementComponent,
+    LanguageComputerOffreComponent,
+    LanguageSpeakOffreComponent,
+    SalaryOffreComponent,
+    PenaltyOffreComponent,
+    TermsOffreComponent,
+    LanguageComputerFavorisOffreComponent
   ],
   imports: [
     BrowserModule,

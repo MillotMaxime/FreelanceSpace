@@ -9,8 +9,11 @@ import { User } from '../_models/user';
 })
 export class AccountService {
   baseUrl='https://localhost:5001/api/';
+  paramateBusinessUrl='?email=';
+
   private currentUserSource = new ReplaySubject<User>(1);
   currentUser$ = this.currentUserSource.asObservable();
+  users: any = {};
 
   constructor(private http: HttpClient) { }
 
@@ -20,7 +23,8 @@ export class AccountService {
       map((response: User) => {
         const user = response;
         if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
+          this.setBuisness(user);
+          this.saveLocalStorage(user);
           this.setCurrentUser(user);
         }
       })
@@ -31,11 +35,30 @@ export class AccountService {
     return this.http.post(this.baseUrl + 'account/register', model).pipe(
       map((user: User) => {
         if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
+          this.setBuisness(user);
+          this.saveLocalStorage(user);
           this.setCurrentUser(user);
         }
       })
     );
+  }
+
+  setBuisness(user: User)
+  {
+    this.http.get(this.baseUrl + 'users/isBusiness' + this.paramateBusinessUrl + user.email).subscribe(users =>
+      {
+        if(users != null) {
+          user.isBuisness = true;
+        } else {
+          user.isBuisness = false;
+        }
+      });
+
+      return user;
+  }
+
+  saveLocalStorage(user: User) {
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
   setCurrentUser(user: User) {

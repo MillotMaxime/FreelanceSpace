@@ -1,0 +1,29 @@
+<div *ngIf="!languageComputer">
+    <div class="form-group" >
+        <legend class="question">Choisez les langagues informatique du projet ?</legend>
+        <div *ngFor="let language of languages">
+            <hr>
+            <input type="checkbox" [checked]="addLangageSelec(language)" > {{language.name}}
+        </div>
+        <hr>
+        <hr>
+        <span class="example-list-section">
+            <ul>
+                <li *ngFor="let language of languages">
+                <mat-checkbox [(ngModel)]="newOffre.completed"
+                    {{language.name}}
+                </mat-checkbox>
+                </li>
+            </ul>
+        </span>
+    </div>
+    <br>
+    <div class="form-group text-center">
+        <button class="btn btn-default mr-2" type="button">Cancel</button>
+        <button (click)="languageComputerToggle()" class="btn btn-success mr-2" type="submit">Next</button>
+    </div>
+</div>
+
+<div *ngIf="languageComputer">
+    <app-language-computer-favoris-offre [newOffre]='newOffre' (cancelRegister)="cancelLanguageComputer($event)" ></app-language-computer-favoris-offre>
+</div>

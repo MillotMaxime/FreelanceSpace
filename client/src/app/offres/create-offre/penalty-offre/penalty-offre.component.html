@@ -1,0 +1,27 @@
+<div *ngIf="!penaltyOffre">
+    <div class="form-group">
+        <h3 class="text-center text-primary">Qu'elle est la penalyté sur le salaraire ?</h3>
+        <hr>
+        <div class="form-group">
+            <input type="text" class="form-control" name="Montant" 
+            [(ngModel)]="penalty.montant" placeholder="Montant">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="Nombre" 
+            [(ngModel)]="penaltyRecurence.nombre" placeholder="Nombre">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="Recurence" 
+            [(ngModel)]="penaltyRecurence.typeTime" placeholder="Recurence">
+        </div>
+    </div>
+
+    <div class="form-group text-center">
+        <button class="btn btn-default mr-2" type="button">Cancel</button>
+        <button (click)="penaltyOffreToggle()" class="btn btn-success mr-2" type="submit">Next</button>
+    </div>
+</div>
+
+<div *ngIf="penaltyOffre">
+    <app-terms-offre (cancelRegister)="cancelPenaltyOffre($event)" ></app-terms-offre>
+</div>

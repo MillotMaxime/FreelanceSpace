@@ -1,1 +1,19 @@
-<p>create-offre works!</p>
+<div *ngIf="!descriptif" style="text-align: center;">
+    <h2 class="text-center text-primary">Créer votre besoin</h2>
+    <hr>
+    <div class="form-group">
+        <input type="text" class="form-control" name="Name" [(ngModel)]="name" placeholder="Name">
+    </div>
+    <div class="form-group">
+        <textarea class="form-control" name="Description" [(ngModel)]="description" placeholder="Description">
+        </textarea>
+    </div>
+    <div class="text-center">
+        <button (click)="cancel()" class="btn btn-default mr-2" type="button">Cancel</button>
+        <button (click)="descriptifToggle()" class="btn btn-primary btn-lg mr-2">Next</button>
+    </div>
+</div>
+
+<div *ngIf="descriptif" class="container">
+    <app-language-computer-offre [newOffre]='offre' (cancelRegister)="cancelDescriptif($event)" ></app-language-computer-offre>
+</div>

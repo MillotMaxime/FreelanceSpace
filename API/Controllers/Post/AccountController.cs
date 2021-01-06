@@ -1,3 +1,4 @@
+using System;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,15 +28,15 @@ namespace API.Controllers
 
             using var hamc = new HMACSHA512();
             
-            if (registerDto.isBusiness) {
+            if (registerDto.Business) {
                 var user = createBusiness(registerDto, hamc);
                 _context.Business.Add(user);
-                saveUser(user);
+                saveUser();
                 return new UserDto(user.Email, _tokenService.CreateToken(user));
             } else {
                 var user = createFreelance(registerDto, hamc);
                 _context.Freelance.Add(user);
-                saveUser(user);
+                saveUser();
                 return new UserDto(user.Email, _tokenService.CreateToken(user));
             }
         }
@@ -47,8 +48,8 @@ namespace API.Controllers
                     Email = registerDto.Email.ToLower(),
                     PasswordHash = hamc.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
                     PasswordSalt = hamc.Key,
-                    Activite = registerDto.Activite,
-                    StatutJuridique = registerDto.StatutJuridique
+                    Activity = registerDto.Activite,
+                    LegalStatus = registerDto.StatutJuridique
                 };
         }
 
@@ -59,16 +60,16 @@ namespace API.Controllers
                     Email = registerDto.Email.ToLower(),
                     PasswordHash = hamc.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
                     PasswordSalt = hamc.Key,
-                    Age = registerDto.Age
+                    Ago = registerDto.Age
                 };
         }
 
-        private async Task<bool> UserExists(string email)
+        async Task<bool> UserExists(string email)
         {
             return await _context.Users.AnyAsync(x => x.Email == email.ToLower());
         }
 
-        private async void saveUser(AppUser user) {
+        private async void saveUser() {
             await _context.SaveChangesAsync();
         }
 

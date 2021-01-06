@@ -10,17 +10,25 @@ import { AccountService } from '../_services/account.service';
 })
 export class LoginComponent implements OnInit {
   model: any = {}
+  user: any = {}
+  connected = false;
   @Output() cancelLogin = new EventEmitter();
 
   constructor(public accountService: AccountService, private route: Router) { }
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    if (this.user != null) {
+      this.route.navigateByUrl('');
+    } else {
+      this.connected = false;
+    }
   }
 
   login() 
   {
     this.accountService.login(this.model).subscribe(response => {
-      this.route.navigateByUrl('');
+      location.reload();
     }, error => {
       console.log(error)
     })
@@ -28,6 +36,6 @@ export class LoginComponent implements OnInit {
 
   cancel()
   {
-    this.cancelLogin.emit(false);
+    this.route.navigateByUrl('');
   }
 }

@@ -2,18 +2,20 @@
     <h2 class="text-center text-primary">Sign up</h2>
     <hr>
     <div class="form-group text-center">
-        <button class="btn btn-primary mr-2" 
+        <button class="btn mr-2"
+            [(ngModel)]="model.business"
             [ngClass]="{ 
-                'btn-secondary': isBusiness, 
-                'btn-primary': !isBusiness }" 
-            (click)="isBusiness = false">
+                'btn-secondary': business, 
+                'btn-primary': !business }" 
+            (click)="isBusiness()">
             Freelance 
         </button>
-        <button class="btn btn-secondary mr-2" 
+        <button class="btn mr-2"
+            [(ngModel)]="model.business"
             [ngClass]="{ 
-                'btn-primary': isBusiness, 
-                'btn-secondary': !isBusiness }" 
-            (click)="isBusiness = true"> 
+                'btn-primary': business, 
+                'btn-secondary': !business }" 
+            (click)="isBusiness()"> 
             Entreprise 
         </button>
     </div>
@@ -25,10 +27,6 @@
         <input type="text" class="form-control" name="Last name" 
         [(ngModel)]="model.lastname" placeholder="Last Name">
     </div>
-    <div *ngIf="!isBusiness" class="form-group">
-        <input type="text" class="form-control" name="Age" 
-        [(ngModel)]="model.age" placeholder="Age">
-    </div>
     <div class="form-group">
         <input type="text" class="form-control" name="Email" 
         [(ngModel)]="model.email" placeholder="Email">
@@ -37,11 +35,15 @@
         <input type="text" class="form-control" name="Password" 
         [(ngModel)]="model.password" placeholder="Password">
     </div>
-    <div *ngIf="isBusiness" class="form-group">
+    <div *ngIf="!business" class="form-group">
+        <input type="text" class="form-control" name="Age" 
+        [(ngModel)]="model.age" placeholder="Age">
+    </div>
+    <div *ngIf="business" class="form-group">
         <input type="text" class="form-control" name="Activite" 
         [(ngModel)]="model.activite" placeholder="Activite">
     </div>
-    <div *ngIf="isBusiness" class="form-group">
+    <div *ngIf="business" class="form-group">
         <input type="text" class="form-control" name="Statut Juridique" 
         [(ngModel)]="model.statutjuridique" placeholder="Statut Juridique">
     </div>

@@ -5,7 +5,7 @@ namespace API.DTOs
     public class RegisterDto
     {
         [Required]
-        public bool isBusiness { get; set; }
+        public bool Business { get; set; }
 
         public string Activite { get; set; }
 

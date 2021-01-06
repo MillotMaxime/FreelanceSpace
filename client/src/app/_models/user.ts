@@ -1,4 +1,5 @@
 export interface User {
-    login: string;
+    email: string;
     token: string;
+    isBuisness: Boolean;
 }

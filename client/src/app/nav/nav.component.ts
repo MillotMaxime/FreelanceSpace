@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { error } from 'protractor';
-import { Observable } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { User } from '../_models/user';
 import { AccountService } from '../_services/account.service';
 
@@ -16,7 +16,11 @@ export class NavComponent implements OnInit {
 
   constructor(private http: HttpClient, public accountService: AccountService, private route: Router) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.model = JSON.parse(localStorage.getItem('user'));
+    this.model = this.accountService.setBuisness(this.model);
+    this.accountService.saveLocalStorage(this.model);
+  }
 
   login()
   {

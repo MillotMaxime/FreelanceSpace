@@ -1,0 +1,22 @@
+<div *ngIf="!languageSpeak">
+    <div class="form-group">
+        <legend>Choisez le langage sera parler pour ce projet ?</legend>
+        <fieldset>
+            <input type="checkbox" name="Français" value="Français"> Français<br>
+            <input type="checkbox" name="Anglais" value="Anglais"> Anglais<br>
+            <input type="checkbox" name="Espagnol" value="Espagnol"> Espagnol<br>
+            <input type="checkbox" name="favorite_pet" value="Birds"> Chinois<br>
+            <input type="checkbox" name="favorite_pet" value="Birds"> Japonais<br>
+            <input type="checkbox" name="favorite_pet" value="Birds"> etc<br>
+        </fieldset> 
+    </div>
+
+    <div class="form-group text-center">
+        <button class="btn btn-default mr-2" type="button">Cancel</button>
+        <button (click)="languageSpeakToggle()" class="btn btn-success mr-2" type="submit">Next</button>
+    </div>
+</div>
+
+<div *ngIf="languageSpeak">
+    <app-salary-offre (cancelRegister)="cancelLanguageSpeak($event)" ></app-salary-offre>
+</div>

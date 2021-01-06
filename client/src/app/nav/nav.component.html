@@ -4,14 +4,11 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <li *ngIf="(accountService.currentUser$ | async)" class="navbar-nav nav-item">
-            <a class="nav-link">Nos offres</a>
+        <li *ngIf="(accountService.currentUser$ | async ) && model.isBuisness" class="navbar-nav nav-item">
+            <a class="nav-link" routerLink="/offreCreate">Pro</a>
         </li>
-        <li *ngIf="(accountService.currentUser$ | async)" class="navbar-nav nav-item">
-            <a class="nav-link">Nos offres</a>
-        </li>
-        <li *ngIf="(accountService.currentUser$ | async)" class="navbar-nav nav-item">
-            <a class="nav-link">Nos offres</a>
+        <li *ngIf="(accountService.currentUser$ | async ) && !model.isBuisness" class="navbar-nav nav-item">
+            <a *ngIf="!model.isBuisness" class="nav-link" routerLink="/offres">Not Pro</a>
         </li>
         <div class="navbar-nav nav-item dropdown" *ngIf="accountService.currentUser$ | async" dropdown>
             <a class="nav-link" dropdownToggle>Mon compte</a>

@@ -20,7 +20,7 @@ import { OffresListComponent } from './offres/offres-list/offres-list.component'
 import { PremiumComponent } from './premium/premium/premium.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '', component: HomeComponent,},
   {path: 'offre', component: OffreComponent},
   {path: 'offres', component: OffresListComponent},
   {path: 'offreCreate', component: CreateOffreComponent},
@@ -42,7 +42,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    onSameUrlNavigation: 'reload'
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
