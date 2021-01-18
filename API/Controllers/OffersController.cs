@@ -68,7 +68,7 @@ namespace API.Controllers
             offreDto.ComputerLanguage.ForEach(language => {
                 OfferProgramingLanguages offreLanguagesComputer = new OfferProgramingLanguages();
                 
-                Task<ProgramingLanguage> computerLanguage = _context.ComputerLanguage.SingleOrDefaultAsync(
+                Task<ProgramingLanguage> computerLanguage = _context.ProgramingLanguage.SingleOrDefaultAsync(
                     x => x.Name.ToLower() == language.Name.ToLower()
                 );
                 
@@ -86,7 +86,7 @@ namespace API.Controllers
             offreDto.LanguageSpeak.ForEach(language => {
                 OfferLanguages offreLanguagesSpeak = new OfferLanguages();
                 
-                Task<Language> speak = _context.LanguageSpeak.SingleOrDefaultAsync(
+                Task<Language> speak = _context.Language.SingleOrDefaultAsync(
                     x => x.Name.ToLower() == language.Name.ToLower()
                 );
 

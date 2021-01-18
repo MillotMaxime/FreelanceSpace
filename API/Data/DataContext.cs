@@ -17,8 +17,8 @@ namespace API.Data
         public DbSet<Penalty> SalaryPenalty { get; set; }
         public DbSet<Terms> Terms { get; set; }
         public DbSet<TauxHorraire> TimeLimit { get; set; }
-        public DbSet<Language> LanguageSpeak { get; set; }
-        public DbSet<ProgramingLanguage> ComputerLanguage { get; set; }
+        public DbSet<Language> Language { get; set; }
+        public DbSet<ProgramingLanguage> ProgramingLanguage { get; set; }
         public DbSet<OfferProgramingLanguages> OffreLanguagesComputer { get; set; }
         public DbSet<OfferLanguages> OffreLanguagesSpeak { get; set; }
         

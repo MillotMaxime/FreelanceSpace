@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormGroup, FormsModule } from '@angular/forms';
 import { exists } from 'fs';
 import { Language } from 'src/app/_models/language';
-import { LanguageService } from 'src/app/_services/language.service';
+import { SkillService } from 'src/app/_services/skill.service';
 
 @Component({
   selector: 'app-language-computer-offre',
@@ -16,7 +16,7 @@ export class LanguageComputerOffreComponent implements OnInit {
   languageComputer = false;
   experience: number[];
 
-  constructor(private langugaeService: LanguageService) {}
+  constructor(private langugaeService: SkillService) {}
 
   ngOnInit(): void {
     this.loadLanguageComputer();

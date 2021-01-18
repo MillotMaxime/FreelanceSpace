@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Language } from 'src/app/_models/language';
-import { LanguageService } from 'src/app/_services/language.service';
+import { SkillService } from 'src/app/_services/skill.service';
 
 @Component({
   selector: 'app-language-speak-offre',
@@ -12,7 +12,7 @@ export class LanguageSpeakOffreComponent implements OnInit {
   languageSpeak = false;
   @Input() newOffre: any = {};
 
-  constructor(private langugaeService: LanguageService) { }
+  constructor(private langugaeService: SkillService) { }
 
   ngOnInit(): void {
     this.loadLanguageSpeak();

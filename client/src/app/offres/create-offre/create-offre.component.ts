@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ReplaySubject } from 'rxjs';
 import { Language } from 'src/app/_models/language';
 import { AccountService } from 'src/app/_services/account.service';
-import { LanguageService } from 'src/app/_services/language.service';
+import { SkillService } from 'src/app/_services/skill.service';
 
 @Component({
   selector: 'app-create-offre',
@@ -26,7 +26,7 @@ export class CreateOffreComponent implements OnInit {
   allLanguageSpeak:  any = {};
   allComputerLanguage: any = {};
 
-  constructor(private accountService: AccountService, private languageService: LanguageService, private route: Router) {}
+  constructor(private accountService: AccountService, private languageService: SkillService, private route: Router) {}
 
   ngOnInit(): void {
     this.salary.recurence = this.salaryRecurence;

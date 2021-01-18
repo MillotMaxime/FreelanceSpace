@@ -6,19 +6,16 @@ import { Language } from '../_models/language';
 @Injectable({
   providedIn: 'root'
 })
-export class LanguageService {
+export class SkillService {
   urlLanguageSpeak='https://localhost:5001/api/';
-
-  private languageSpeak = new ReplaySubject<Language>(10);
-  languageSpeak$ = this.languageSpeak.asObservable();
 
   constructor(private http: HttpClient) { }
 
   getLanguageSpeak() {
-    return this.http.get<Language[]>(this.urlLanguageSpeak + 'Language');
+    return this.http.get<Language[]>(this.urlLanguageSpeak + 'Skill/Language');
   }
 
   getComputerLanguage() {
-    return this.http.get<Language[]>(this.urlLanguageSpeak + 'ProgramingLanguage');
+    return this.http.get<Language[]>(this.urlLanguageSpeak + 'Skill/ProgramingLanguage');
   }
 }
