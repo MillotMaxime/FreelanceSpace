@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './home/register/register.component';
@@ -33,7 +33,8 @@ import { LanguageSpeakOffreComponent } from './offres/create-offre/language-spea
 import { SalaryOffreComponent } from './offres/create-offre/salary-offre/salary-offre.component';
 import { PenaltyOffreComponent } from './offres/create-offre/penalty-offre/penalty-offre.component';
 import { TermsOffreComponent } from './offres/create-offre/terms-offre/terms-offre.component';
-import { LanguageComputerFavorisOffreComponent } from './offres/create-offre/language-computer-favoris-offre/language-computer-favoris-offre.component';
+import { MatCheckboxModule } from "@angular/material/Checkbox";
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -63,15 +64,17 @@ import { LanguageComputerFavorisOffreComponent } from './offres/create-offre/lan
     LanguageSpeakOffreComponent,
     SalaryOffreComponent,
     PenaltyOffreComponent,
-    TermsOffreComponent,
-    LanguageComputerFavorisOffreComponent
+    TermsOffreComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatCheckboxModule,
+    MatButtonToggleModule,
     FormsModule,
+    ReactiveFormsModule,
     BsDropdownModule.forRoot()
   ],
   providers: [],

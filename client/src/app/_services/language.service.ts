@@ -15,10 +15,10 @@ export class LanguageService {
   constructor(private http: HttpClient) { }
 
   getLanguageSpeak() {
-    return this.http.get<Language[]>(this.urlLanguageSpeak + 'Speak');
+    return this.http.get<Language[]>(this.urlLanguageSpeak + 'Language');
   }
 
   getComputerLanguage() {
-    return this.http.get<Language[]>(this.urlLanguageSpeak + 'ComputerLanguage');
+    return this.http.get<Language[]>(this.urlLanguageSpeak + 'ProgramingLanguage');
   }
 }

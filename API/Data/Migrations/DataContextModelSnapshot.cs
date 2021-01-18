@@ -29,10 +29,7 @@ namespace API.Data.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("FirstName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("LastName")
+                    b.Property<string>("Login")
                         .HasColumnType("TEXT");
 
                     b.Property<byte[]>("PasswordHash")
@@ -48,20 +45,6 @@ namespace API.Data.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("AppUser");
                 });
 
-            modelBuilder.Entity("API.Entities.ComputerLanguage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ComputerLanguage");
-                });
-
             modelBuilder.Entity("API.Entities.LanguageSpeak", b =>
                 {
                     b.Property<int>("Id")
@@ -71,15 +54,12 @@ namespace API.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("Translate")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
                     b.ToTable("LanguageSpeak");
                 });
 
-            modelBuilder.Entity("API.Entities.Offre", b =>
+            modelBuilder.Entity("API.Entities.Offer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -125,7 +105,31 @@ namespace API.Data.Migrations
                     b.ToTable("Offre");
                 });
 
-            modelBuilder.Entity("API.Entities.OffreLanguagesComputer", b =>
+            modelBuilder.Entity("API.Entities.OfferLanguages", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Favoris")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("OffreId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("SpeakId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OffreId");
+
+                    b.HasIndex("SpeakId");
+
+                    b.ToTable("OffreLanguagesSpeak");
+                });
+
+            modelBuilder.Entity("API.Entities.OfferProgramingLanguages", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -149,28 +153,18 @@ namespace API.Data.Migrations
                     b.ToTable("OffreLanguagesComputer");
                 });
 
-            modelBuilder.Entity("API.Entities.OffreLanguagesSpeak", b =>
+            modelBuilder.Entity("API.Entities.ProgramingLanguage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("Favoris")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("OffreId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("SpeakId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OffreId");
-
-                    b.HasIndex("SpeakId");
-
-                    b.ToTable("OffreLanguagesSpeak");
+                    b.ToTable("ComputerLanguage");
                 });
 
             modelBuilder.Entity("API.Entities.Salary", b =>
@@ -257,6 +251,12 @@ namespace API.Data.Migrations
                     b.Property<string>("LegalStatus")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("NameBusiness")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Siret")
+                        .HasColumnType("TEXT");
+
                     b.HasDiscriminator().HasValue("Business");
                 });
 
@@ -267,10 +267,16 @@ namespace API.Data.Migrations
                     b.Property<int>("Ago")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("FirstName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("TEXT");
+
                     b.HasDiscriminator().HasValue("Freelance");
                 });
 
-            modelBuilder.Entity("API.Entities.Offre", b =>
+            modelBuilder.Entity("API.Entities.Offer", b =>
                 {
                     b.HasOne("API.Entities.Business", "Creator")
                         .WithMany()
@@ -297,24 +303,9 @@ namespace API.Data.Migrations
                     b.Navigation("Terms");
                 });
 
-            modelBuilder.Entity("API.Entities.OffreLanguagesComputer", b =>
+            modelBuilder.Entity("API.Entities.OfferLanguages", b =>
                 {
-                    b.HasOne("API.Entities.ComputerLanguage", "ComputerLanguage")
-                        .WithMany()
-                        .HasForeignKey("ComputerLanguageId");
-
-                    b.HasOne("API.Entities.Offre", "Offre")
-                        .WithMany()
-                        .HasForeignKey("OffreId");
-
-                    b.Navigation("ComputerLanguage");
-
-                    b.Navigation("Offre");
-                });
-
-            modelBuilder.Entity("API.Entities.OffreLanguagesSpeak", b =>
-                {
-                    b.HasOne("API.Entities.Offre", "Offre")
+                    b.HasOne("API.Entities.Offer", "Offre")
                         .WithMany()
                         .HasForeignKey("OffreId");
 
@@ -325,6 +316,21 @@ namespace API.Data.Migrations
                     b.Navigation("Offre");
 
                     b.Navigation("Speak");
+                });
+
+            modelBuilder.Entity("API.Entities.OfferProgramingLanguages", b =>
+                {
+                    b.HasOne("API.Entities.ProgramingLanguage", "ComputerLanguage")
+                        .WithMany()
+                        .HasForeignKey("ComputerLanguageId");
+
+                    b.HasOne("API.Entities.Offer", "Offre")
+                        .WithMany()
+                        .HasForeignKey("OffreId");
+
+                    b.Navigation("ComputerLanguage");
+
+                    b.Navigation("Offre");
                 });
 
             modelBuilder.Entity("API.Entities.Salary", b =>

@@ -1,11 +1,14 @@
-<div *ngIf="!descriptif" style="text-align: center;">
+<div *ngIf="!descriptif" id="all">
     <h2 class="text-center text-primary">Créer votre besoin</h2>
-    <hr>
-    <div class="form-group">
-        <input type="text" class="form-control" name="Name" [(ngModel)]="name" placeholder="Name">
+    <div id="allName" class="form-group">
+        <hr>
+        <span id="spamName" class="sm-3 md-3 lg-3 xl-3"> Qu'elle est le nom de votre projet ? </span>
+        <input id="name" class="sm-2 md-2 lg-2 xl-2" type="text" class="form-control" name="Name" [(ngModel)]="name" placeholder="Name">
     </div>
-    <div class="form-group">
-        <textarea class="form-control" name="Description" [(ngModel)]="description" placeholder="Description">
+    <div id="allDescription" class="form-group">
+        <hr>
+        <span id="spamDescription" > Décrivez votre projet : qu'elles sont but ? Qu'elle type d'informaticien recherchez-vous ? </span>
+        <textarea id="description" class="form-control" name="Description" [(ngModel)]="description" placeholder="Description">
         </textarea>
     </div>
     <div class="text-center">

@@ -1,21 +1,28 @@
 <div *ngIf="!languageComputer">
-    <div class="form-group" >
+    <div class="form-group text-center" >
         <legend class="question">Choisez les langagues informatique du projet ?</legend>
-        <div *ngFor="let language of languages">
+        <div *ngFor="let language of languages; let index = index;">
             <hr>
-            <input type="checkbox" [checked]="addLangageSelec(language)" > {{language.name}}
+            {{language.name}}
+            <input type="checkbox" (change)="addLangageSelec(language)" > 
+            <div *ngIf="language.check" >
+                <div>
+                    <span> Ce language est-il importante ? </span>
+                    <input type="checkbox" name="Important" (change)="isImportant(language)"  title="Important">
+                </div>
+                <div>
+                    <span> Combien d'années d'expériences requise ? </span>
+                    <input
+                    [(ngModel)]="experience[index]"
+                    type="number" 
+                    min="0" 
+                    name="Combien d'années d'expérience requise ?" 
+                    title="Combien d'années d'expérience requise ?"
+                    (change)="yearExperience(language, experience[index])">
+                </div>
+            </div>
         </div>
         <hr>
-        <hr>
-        <span class="example-list-section">
-            <ul>
-                <!--<li *ngFor="let language of languages">
-                <mat-checkbox [(ngModel)]="newOffre.completed"
-                    {{language.name}}
-                </mat-checkbox>
-                </li>-->
-            </ul>
-        </span>
     </div>
     <br>
     <div class="form-group text-center">
@@ -25,5 +32,5 @@
 </div>
 
 <div *ngIf="languageComputer">
-    <app-language-computer-favoris-offre [newOffre]='newOffre' (cancelRegister)="cancelLanguageComputer($event)" ></app-language-computer-favoris-offre>
+    <app-language-speak-offre [newOffre]='newOffre' (cancelRegister)="cancelLanguageComputer($event)" ></app-language-speak-offre>
 </div>

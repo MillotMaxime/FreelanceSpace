@@ -6,6 +6,6 @@ namespace API.Enum
         DAY,
         WEEK,
         MONTH,
-        OFFRE_FINISH
+        YEAR
     }
 }

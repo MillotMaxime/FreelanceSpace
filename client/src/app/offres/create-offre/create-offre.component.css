@@ -1,0 +1,35 @@
+#all {
+    text-align: center;
+    margin-top: 7%;
+}
+
+#allName {
+    margin-top:4%;
+}
+
+#spamName {
+    padding-top: 0%;
+    margin-top:0%;
+    float: left;
+    width: 25%;
+    font-weight: bold;
+}
+
+#name {
+    padding-top: 0%;
+    margin-top: 0%;
+    float: left;
+    width: 75%;
+}
+
+#allDescription {
+    margin-top:8%;
+}
+
+#spamDescription {
+    font-weight: bold;
+}
+
+#description {
+    margin-top: 2%;
+}

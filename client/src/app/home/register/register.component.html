@@ -2,50 +2,69 @@
     <h2 class="text-center text-primary">Sign up</h2>
     <hr>
     <div class="form-group text-center">
-        <button class="btn mr-2"
-            [(ngModel)]="model.business"
-            [ngClass]="{ 
-                'btn-secondary': business, 
-                'btn-primary': !business }" 
-            (click)="isBusiness()">
-            Freelance 
-        </button>
-        <button class="btn mr-2"
-            [(ngModel)]="model.business"
-            [ngClass]="{ 
-                'btn-primary': business, 
-                'btn-secondary': !business }" 
-            (click)="isBusiness()"> 
-            Entreprise 
-        </button>
+        <mat-button-toggle-group #group="matButtonToggleGroup">
+            <mat-button-toggle 
+                value="Freelance">
+                    Freelance
+            </mat-button-toggle>
+            <mat-button-toggle 
+                value="Entreprise">
+                    Entreprise
+            </mat-button-toggle>
+        </mat-button-toggle-group>
     </div>
-    <div class="form-group">
-        <input type="text" class="form-control" name="First name" 
+    <div *ngIf="group.value == null"  class="example-selected-value">
+        <span>Vous êtes un Freelance.</span>
+    </div>
+    <div *ngIf="group.value != null && !isBusiness(group.value)"  class="example-selected-value">
+        <span>Vous êtes un {{group.value}}.</span>
+    </div>
+    <div *ngIf="group.value != null && isBusiness(group.value)"  class="example-selected-value">
+        <span>Vous êtes une {{group.value}}.</span>
+    </div>
+    <hr>
+    <div *ngIf="!isBusiness(group.value)" class="form-group">
+        <input type="text" class="form-control" name="First" 
         [(ngModel)]="model.firstname" placeholder="First Name">
     </div>
-    <div class="form-group">
+    <div *ngIf="!isBusiness(group.value)" class="form-group">
         <input type="text" class="form-control" name="Last name" 
         [(ngModel)]="model.lastname" placeholder="Last Name">
+    </div>
+    <div *ngIf="isBusiness(group.value)" class="form-group">
+        <input type="text" class="form-control" name="Name Business" 
+        [(ngModel)]="model.namebusiness" placeholder="Name Business">
     </div>
     <div class="form-group">
         <input type="text" class="form-control" name="Email" 
         [(ngModel)]="model.email" placeholder="Email">
     </div>
     <div class="form-group">
+        <input type="text" class="form-control" name="Login" 
+        [(ngModel)]="model.login" placeholder="Login">
+    </div>
+    <div class="form-group">
         <input type="text" class="form-control" name="Password" 
         [(ngModel)]="model.password" placeholder="Password">
     </div>
-    <div *ngIf="!business" class="form-group">
+    <div class="form-group">
+        <input type="text" class="form-control" name="Password" placeholder="Password">
+    </div>
+    <div *ngIf="!isBusiness(group.value)" class="form-group">
         <input type="text" class="form-control" name="Age" 
         [(ngModel)]="model.age" placeholder="Age">
     </div>
-    <div *ngIf="business" class="form-group">
+    <div *ngIf="isBusiness(group.value)" class="form-group">
         <input type="text" class="form-control" name="Activite" 
         [(ngModel)]="model.activite" placeholder="Activite">
     </div>
-    <div *ngIf="business" class="form-group">
+    <div *ngIf="isBusiness(group.value)" class="form-group">
         <input type="text" class="form-control" name="Statut Juridique" 
         [(ngModel)]="model.statutjuridique" placeholder="Statut Juridique">
+    </div>
+    <div *ngIf="isBusiness(group.value)" class="form-group">
+        <input type="text" class="form-control" name="Siret" 
+        [(ngModel)]="model.siret" placeholder="Siret">
     </div>
     <div class="form-group text-center">
         <button class="btn btn-success mr-2" type="submit">Rgister</button>

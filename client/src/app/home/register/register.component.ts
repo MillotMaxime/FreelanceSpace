@@ -7,15 +7,13 @@ import { AccountService } from '../../_services/account.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  //@Input() usersFromHomeComponent: any;
   @Output() cancelRegister = new EventEmitter();
   model: any = {};
-  business: any;
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {
-    this.business = false;
+    this.model.business = false;
   }
 
   register() 
@@ -32,17 +30,12 @@ export class RegisterComponent implements OnInit {
     this.cancelRegister.emit(false);
   }
 
-  isBusiness()
-  {
-    switch (this.business) {
-      case false :
-        this.business = true;
-        this.model.business =  this.business;
-        break;
-      case true :
-        this.business = false;
-        this.model.business =  this.business;
-        break;
+  isBusiness(value) {
+    if(value == "Entreprise") {
+      this.model.business = true;
+      return true;
+    } else {
+      return false;
     }
   }
 }

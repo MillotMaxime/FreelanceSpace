@@ -1,18 +1,35 @@
 <div *ngIf="!penaltyOffre">
     <div class="form-group">
-        <h3 class="text-center text-primary">Qu'elle est la penalyté sur le salaraire ?</h3>
-        <hr>
-        <div class="form-group">
-            <input type="text" class="form-control" name="Montant" 
-            [(ngModel)]="penalty.montant" placeholder="Montant">
+        <h3 class="text-center text-primary">Qu'elle est la penalty ?</h3>
+        <div *ngIf="!ponctuel" class="form-group">
+            <hr>
+            <span> Qu'elle est la recurence pour la penalty de paiment ? </span>
+            <select (change)="ponctuelMontant(valueRecu)" [(ngModel)]="valueRecu">
+                <option *ngFor="let recu of recurence" value="{{recu}}">{{recu}}</option>
+            </select>
         </div>
-        <div class="form-group">
-            <input type="text" class="form-control" name="Nombre" 
-            [(ngModel)]="penaltyRecurence.nombre" placeholder="Nombre">
+        <div *ngIf="!ponctuel && (ponctuelHourMontant || ponctuelDayMontant || ponctuelWeekMontant || ponctuelMonthMontant)">
+            <hr>
+            <span> Qu'elle est le nombre de fois que le paiment sera efféctué avec cette recurence ? </span>
+            <div *ngIf="!ponctuel && ponctuelHourMontant" class="form-group">
+                <input type="number" class="form-control" min="1" max="24" name="Nombre" [(ngModel)]="penaltyRecurence.nombre" placeholder="Nombre">
+            </div>
+            <div *ngIf="!ponctuel && ponctuelDayMontant" class="form-group">
+                <input type="text" class="form-control" min="1" max="31" name="Nombre" [(ngModel)]="penaltyRecurence.nombre" placeholder="Nombre">
+            </div>
+            <div *ngIf="!ponctuel && ponctuelWeekMontant" class="form-group">
+                <input type="text" class="form-control"  min="1" max="4" name="Nombre" [(ngModel)]="penaltyRecurence.nombre" placeholder="Nombre">
+            </div>
+            <div *ngIf="!ponctuel && ponctuelMonthMontant" class="form-group">
+                <input type="text" class="form-control" min="1" max="12" name="Nombre" [(ngModel)]="penaltyRecurence.nombre" placeholder="Nombre">
+            </div>
         </div>
-        <div class="form-group">
-            <input type="text" class="form-control" name="Recurence" 
-            [(ngModel)]="penaltyRecurence.typeTime" placeholder="Recurence">
+        <div>
+            <hr>
+            <span> Qu'elle est le montant ? </span>
+            <div class="form-group">
+                <input type="number" class="form-control" name="Nombre" [(ngModel)]="penalty.nombre" placeholder="Montant">
+            </div>
         </div>
     </div>
 
