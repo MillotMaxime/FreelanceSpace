@@ -1,0 +1,51 @@
+<form *ngIf="!Finish" #registerForm="ngForm" (ngSubmit)="createOffer()" autocomplete="off">
+    <h1 class="text-center text-primary">{{newOffre.name}}</h1>
+    <div>
+        <div id="divBut">
+            <h4 id="titreBut"> But : </h4>
+            <span id="spamBut">{{newOffre.but}}</span>
+        </div>
+        <div id="divDescription">
+            <h4 id="titreDescription"> Description : </h4>
+            <span id="spamDescription">{{newOffre.description}}</span>
+        </div>
+        <div id="divDescriptionFreelance">
+            <h4 id="titreDescriptionFreelance"> Description Freelance : </h4>
+            <span id="spamDescriptionFreelance">{{newOffre.descriptionFreelance}}</span>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <h4 id="ProgamLanguageSpam"> Voici toutes les languages de programation que vous avez selectionné : </h4>
+        <br>
+        <div *ngFor="let language of PrograminglanguageSelect; let index = index;">
+            <p>{{createTextprogramingLanguage(language)}}</p>
+            <br>
+        </div>
+    </div>-
+    <hr>
+        <div>
+            <h4 id="LanguageSpam"> Voici toutes les languages que vous avez selectionné : </h4>
+            <div *ngFor="let language of LanguageSelect; let index = index;">
+                <span>{{createLanguage(language)}}</span>
+                <br>
+            </div>
+        </div>
+    <hr>
+    <div>
+        <span> Une fois l'offre commencé, le freelanceur aura {{newOffre.terms.end.valeur}} {{TypeTime}}.</span>
+    </div>
+    <hr>
+    <div>
+        <span> Le montant total de l'offre est de {{newOffre.salary.totalAmount}}€. </span>
+    </div>
+    <hr>
+    <div class="form-group text-center">
+        <button class="btn btn-success mr-2" type="submit">Créer</button>
+        <button class="btn btn-default mr-2" (click)="cancel()" type="button">Annuler</button>
+    </div>
+</form>
+
+<div *ngIf="Finish">
+    Offre envoyé
+</div>

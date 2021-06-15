@@ -14,7 +14,7 @@ namespace API.Data
         public DbSet<Business> Business { get; set; }
         public DbSet<Offer> Offre { get; set; }
         public DbSet<Salary> Salary { get; set; }
-        public DbSet<Penalty> SalaryPenalty { get; set; }
+        public DbSet<Penalty> Penalty { get; set; }
         public DbSet<Terms> Terms { get; set; }
         public DbSet<TauxHorraire> TimeLimit { get; set; }
         public DbSet<Language> Language { get; set; }

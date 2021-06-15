@@ -11,11 +11,11 @@ export class SkillService {
 
   constructor(private http: HttpClient) { }
 
-  getLanguageSpeak() {
+  getLanguage() {
     return this.http.get<Language[]>(this.urlLanguageSpeak + 'Skill/Language');
   }
 
-  getComputerLanguage() {
+  getProgramingLanguage() {
     return this.http.get<Language[]>(this.urlLanguageSpeak + 'Skill/ProgramingLanguage');
   }
 }

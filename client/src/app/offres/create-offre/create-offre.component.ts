@@ -14,7 +14,9 @@ import { SkillService } from 'src/app/_services/skill.service';
 export class CreateOffreComponent implements OnInit {
   descriptif = false;
   name: string;
+  but: string;
   description: string;
+  descriptionFreelance: string;
   offre: any = {};
   salary: any = {};
   salaryRecurence: any = {};
@@ -42,9 +44,17 @@ export class CreateOffreComponent implements OnInit {
     this.route.navigateByUrl('');
   }
 
+  typeOffer(value) {
+    this.offre.typeOffer = value;
+    console.log(this.offre);
+    console.log(value);
+  }
+
   descriptifToggle() {
     this.offre.name = this.name;
+    this.offre.but = this.but;
     this.offre.description = this.description;
+    this.offre.descriptionFreelance = this.descriptionFreelance;
     this.descriptif = !this.descriptif;
   }
 

@@ -3,14 +3,16 @@ using System;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210120164807_modifSalaryAndPenalty")]
+    partial class modifSalaryAndPenalty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,16 +73,10 @@ namespace API.Data.Migrations
                     b.Property<bool>("BusinessValidation")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("But")
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTime>("Create")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("DescriptionFreelance")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("FreelanceValidation")
@@ -89,18 +85,20 @@ namespace API.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("Penaltyid")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int?>("SalaryId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("TermsId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("TypeOffer")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
                     b.HasIndex("Buisness");
+
+                    b.HasIndex("Penaltyid");
 
                     b.HasIndex("SalaryId");
 
@@ -148,9 +146,6 @@ namespace API.Data.Migrations
                     b.Property<int?>("ProgramingLanguageId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("YearExperience")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
                     b.HasIndex("OffreId");
@@ -173,7 +168,7 @@ namespace API.Data.Migrations
 
                     b.HasIndex("TauxHorraireId");
 
-                    b.ToTable("Penalty");
+                    b.ToTable("SalaryPenalty");
                 });
 
             modelBuilder.Entity("API.Entities.ProgramingLanguage", b =>
@@ -298,6 +293,10 @@ namespace API.Data.Migrations
                         .WithMany()
                         .HasForeignKey("Buisness");
 
+                    b.HasOne("API.Entities.Penalty", "Penalty")
+                        .WithMany()
+                        .HasForeignKey("Penaltyid");
+
                     b.HasOne("API.Entities.Salary", "Salary")
                         .WithMany()
                         .HasForeignKey("SalaryId");
@@ -307,6 +306,8 @@ namespace API.Data.Migrations
                         .HasForeignKey("TermsId");
 
                     b.Navigation("Creator");
+
+                    b.Navigation("Penalty");
 
                     b.Navigation("Salary");
 

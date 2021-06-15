@@ -5,7 +5,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <li *ngIf="(accountService.currentUser$ | async ) && model.isBuisness" class="navbar-nav nav-item">
-            <a class="nav-link" routerLink="/offreCreate">Pro</a>
+            <a class="nav-link" routerLink="/offre">Pro</a>
         </li>
         <li *ngIf="(accountService.currentUser$ | async ) && !model.isBuisness" class="navbar-nav nav-item">
             <a *ngIf="!model.isBuisness" class="nav-link" routerLink="/offres">Not Pro</a>

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace API.Entities
@@ -8,5 +9,6 @@ namespace API.Entities
         public Offer Offre { get; set; }
         public ProgramingLanguage ProgramingLanguage { get; set; }
         public bool Favoris { get; set; }
+        public int YearExperience { get; set; }
     }
 }

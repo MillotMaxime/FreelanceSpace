@@ -7,9 +7,7 @@ namespace API.Entities
     public class Salary
     {
         [Key]
-        public int id { get; set; }
-
-        [ForeignKey("TimeLimit"), Column("Id")]        
-        public TauxHorraire TauxHorraire { get; set; }
+        public int Id { get; set; }
+        public int TotalAmount { get; set; }
     }
 }

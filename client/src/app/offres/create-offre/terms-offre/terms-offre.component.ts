@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-terms-offre',
@@ -6,23 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./terms-offre.component.css']
 })
 export class TermsOffreComponent implements OnInit {
+  @Input() newOffre: any = {};
   termsOffre = false;
-  deadLine = true;
 
-  ponctuelHourMontant = false;
-  ponctuelDayMontant = false;
-  ponctuelWeekMontant = false;
-  ponctuelMonthMontant = false;
-  hourMontant : number;
-  dayMontant : number;
-  weekMontant : number;
-  monthMontant : number;
-
-  recurence : String[];
-  valueRecu : String;
-
+  typeTimes : String[];
+  typeTimeSelect : String;
 
   terms: any = {};
+  salary: any = {};
+  penalty: any = {};
+  penaltyTauxHorraire: any = {};
   termsEnd: any = {};
 
   constructor() { }
@@ -31,60 +24,49 @@ export class TermsOffreComponent implements OnInit {
     this.createRecurence();
   }
 
-  ponctuelMontant() {
-    console.log(this.valueRecu);
-    switch(this.valueRecu) {
-      case "Heur": 
-        this.ponctuelHourMontant = true;
-        this.ponctuelDayMontant = false;
-        this.ponctuelWeekMontant = false;
-        this.ponctuelMonthMontant = false;
-        break;
-      case "Jour":
-        this.ponctuelDayMontant = true;
-        this.ponctuelHourMontant = false;
-        this.ponctuelWeekMontant = false;
-        this.ponctuelMonthMontant = false;
-        break;
-      case "Semaine":
-        this.ponctuelWeekMontant = true;
-        this.ponctuelHourMontant = false;
-        this.ponctuelDayMontant = false;
-        this.ponctuelMonthMontant = false;
-        break;
-      case "Mois":
-        this.ponctuelMonthMontant = true;
-        this.ponctuelHourMontant = false;
-        this.ponctuelDayMontant = false;
-        this.ponctuelWeekMontant = false;
-        break;
-      case null:
-        this.ponctuelHourMontant = false;
-        this.ponctuelDayMontant = false;
-        this.ponctuelWeekMontant = false;
-        this.ponctuelMonthMontant = false;
-        break;
-    }
-  }
-
   createRecurence() {
     const recurence = [];
-    recurence.push("Heur");
-    recurence.push("Jour");
-    recurence.push("Semaine");
+    recurence.push("Heur(s)");
+    recurence.push("Jour(s)");
+    recurence.push("Semaine(s)");
     recurence.push("Mois");
-    this.recurence = recurence;
+    recurence.push("Année(s)");
+    this.typeTimes = recurence;
   }
 
-  noDaedLine() {
-    if(this.deadLine) {
-      this.deadLine = false;
-    } else {
-      this.deadLine = true;
+  ponctuelMontant() {
+    switch(this.typeTimeSelect) {
+      case "Heur(s)":
+        this.termsEnd.TypeTime = 0;
+        break;
+      case "Jour(s)":
+        this.termsEnd.TypeTime = 1;
+        break;
+      case "Semaine(s)":
+        this.termsEnd.TypeTime = 2;
+        break;
+      case "Mois":
+        this.termsEnd.TypeTime = 3;
+        break;
+      case "Année(s)":
+        this.termsEnd.TypeTime = 4;
+        break;
+      case null:
+        this.termsEnd.TypeTime = null;
+        break;
     }
   }
 
   penaltyOffreToggle() {
+    this.penaltyTauxHorraire.typeTaux = 0;
+    this.penalty = this.penaltyTauxHorraire;
+
+    this.terms.end = this.termsEnd;
+
+    this.newOffre.penalty = this.penalty;
+    this.newOffre.salary = this.salary;
+    this.newOffre.terms = this.terms;
+
     this.termsOffre = !this.termsOffre;
   }
 

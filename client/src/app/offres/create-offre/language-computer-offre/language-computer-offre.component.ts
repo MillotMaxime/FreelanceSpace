@@ -1,7 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormGroup, FormsModule } from '@angular/forms';
-import { exists } from 'fs';
 import { Language } from 'src/app/_models/language';
 import { SkillService } from 'src/app/_services/skill.service';
 
@@ -20,12 +17,12 @@ export class LanguageComputerOffreComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadLanguageComputer();
-    this.newOffre.computerLanguage = null;
+    this.newOffre.programingLanguages = null;
     this.experience = [];
   }
 
   loadLanguageComputer() {
-    this.langugaeService.getComputerLanguage().subscribe(language => {
+    this.langugaeService.getProgramingLanguage().subscribe(language => {
       const languagesSelect = language;
       languagesSelect.forEach(element => {
         element.check = false;
@@ -38,39 +35,56 @@ export class LanguageComputerOffreComponent implements OnInit {
     language.check = true;
   }
 
-  addLangageSelec(language) {
+  addOrRemoveLangageSelec(language) {
     this.checkLanguage(language)
-    if (this.newOffre.computerLanguage == undefined) {
+    if (this.newOffre.programingLanguages == undefined) {
       const languagesSelect = [];
       languagesSelect.push(language);
-      this.newOffre.computerLanguage = languagesSelect;
-      this.newOffre.computerLanguage[0].important = false;
+      this.newOffre.programingLanguages = languagesSelect;
+      this.newOffre.programingLanguages[0].important = false;
+      this.newOffre.programingLanguages[0].experience = 0;
     } else {
-      this.newOffre.computerLanguage.push(language);
-      const numberIndex = this.newOffre.computerLanguage.indexOf(language);
-      this.newOffre.computerLanguage[numberIndex].important = false;
+      let newLanguage = true;
+
+      this.newOffre.programingLanguages.forEach(languages => {
+        if (languages.name == language.name) {
+          const numberIndex = this.newOffre.programingLanguages.indexOf(languages);
+          delete  this.newOffre.programingLanguages[numberIndex];
+          newLanguage = false;
+          language.check = false;
+        }
+      });
+      
+      if(newLanguage) {
+        this.addLangageSelec(language);
+      }
     }
   }
 
+  addLangageSelec(language) {
+    this.newOffre.programingLanguages.push(language);
+    const numberIndex = this.newOffre.programingLanguages.indexOf(language);
+    this.newOffre.programingLanguages[numberIndex].important = false;
+    this.newOffre.programingLanguages[numberIndex].experience = 0;
+  }
+
   isImportant(language) {
-    const numberIndex = this.newOffre.computerLanguage.indexOf(language);
-    if (this.newOffre.computerLanguage[numberIndex].important == undefined 
-      || this.newOffre.computerLanguage[numberIndex].important == false) {
-      this.newOffre.computerLanguage[numberIndex].important = true;
+    const numberIndex = this.newOffre.programingLanguages.indexOf(language);
+    if (this.newOffre.programingLanguages[numberIndex].important == undefined 
+      || this.newOffre.programingLanguages[numberIndex].important == false) {
+      this.newOffre.programingLanguages[numberIndex].important = true;
     } else {
-      this.newOffre.computerLanguage[numberIndex].important = false;
+      this.newOffre.programingLanguages[numberIndex].important = false;
     }
   }
   
   yearExperience(language, experience) {
-    const numberIndex = this.newOffre.computerLanguage.indexOf(language);
-    console.log(experience);
-    this.newOffre.computerLanguage[numberIndex].experience = experience;
+    const numberIndex = this.newOffre.programingLanguages.indexOf(language);
+    this.newOffre.programingLanguages[numberIndex].experience = experience;
   }
 
   languageComputerToggle() {
     this.languageComputer = !this.languageComputer;
-    console.log(this.newOffre);
   }
 
   cancelLanguageComputer(event: boolean) {

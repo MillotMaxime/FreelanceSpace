@@ -1,1 +1,13 @@
-<p>offres-list works!</p>
+<div>
+    <div *ngFor="let offre of offres; let index = index;">
+        <p>{{offre.name}}</p>
+        <p>{{offre.typeOffer}}</p>
+        <p>{{offre.but}}</p>
+        <p>{{offre.description}}</p>    
+        <p>{{offre.descriptionFreelance}}</p>
+        <p>{{offre.salary.totalAmount}}</p>
+        <p>{{offre.terms.end.typeTime}}</p>
+        <p>{{offre.terms.end.valeur}}</p>
+        <hr> 
+    </div>
+</div>

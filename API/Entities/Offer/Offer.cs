@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using API.Enum;
 
 namespace API.Entities
 {
@@ -16,13 +17,17 @@ namespace API.Entities
 
         public string Name { get; set; }
 
+        public string But { get; set; }
+
         public string Description { get; set; }
+
+        public string DescriptionFreelance { get; set; }
+
+        public TypeOffer TypeOffer { get; set; }
 
         public Terms Terms { get; set; }
 
         public Salary Salary { get; set; }
-
-        public Penalty Penalty { get; set; }
 
         public Boolean BusinessValidation { get; set; }
 

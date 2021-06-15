@@ -4,7 +4,7 @@
         <div *ngFor="let language of languages; let index = index;">
             <hr>
             {{language.name}}
-            <input type="checkbox" (change)="addLangageSelec(language)" > 
+            <input type="checkbox" (change)="addOrRemoveLangageSelec(language)" > 
             <div *ngIf="language.check" >
                 <div>
                     <span> Ce language est-il importante ? </span>

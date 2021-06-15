@@ -20,7 +20,7 @@ export class LanguageSpeakOffreComponent implements OnInit {
   }
 
   loadLanguageSpeak() {
-    this.langugaeService.getLanguageSpeak().subscribe(language => {
+    this.langugaeService.getLanguage().subscribe(language => {
       const languagesSelect = language;
       languagesSelect.forEach(element => {
         element.check = false;

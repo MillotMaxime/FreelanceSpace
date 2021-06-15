@@ -1,33 +1,21 @@
 <div *ngIf="!termsOffre">
     <div class="form-group">
-        <h3 class="text-center text-primary">Qu'elle sont les terms de l'offre ?</h3>
+        <h3 class="text-center text-primary">Qu'elle est le délai pour finir le projet ?</h3>
         <hr>
-        <div>
-            <span> Voulez-vous donner un temps de réalisttion ? </span>
-            <br>
-            <span> Ps : sans temps de réalisation vous laisser votre dévellopeur vous en fournir un. </span>
-            <br>
-            <span> Cela permet de le mettre en confiance pour établir son planing et laisse aussi une place de concurence entre chaque developpeur. </span>
-            <input id="ponctuel" type="checkbox" name="poncutel" (change)="noDaedLine()"  title="poncutel">
-        </div>
-        <div *ngIf="deadLine" class="form-group">
+        <div class="form-group">
+            <div class="divPositionTime">
+                <span id="labelTime">Le freelanceur aura </span>
+                <input id="nombre" type="number" class="form-control" name="Nombre" [(ngModel)]="termsEnd.valeur" placeholder="Nombre">
+                <select id="typeTime" (change)="ponctuelMontant(typeTimeSelect)" [(ngModel)]="typeTimeSelect">
+                    <option *ngFor="let typeTime of typeTimes" value="{{typeTime}}">{{typeTime}}</option>
+                </select>
+                <span id="labelTime"> pour finir le projet.</span>
+            </div>
             <hr>
-            <span> Combien de temps fixé vous pour finir le projet en totalité ? </span>
-            <select (change)="ponctuelMontant(valueRecu)" [(ngModel)]="valueRecu">
-                <option *ngFor="let recu of recurence" value="{{recu}}">{{recu}}</option>
-            </select>
-            <div *ngIf="deadLine && (ponctuelHourMontant || ponctuelDayMontant || ponctuelWeekMontant || ponctuelMonthMontant)">
-                <div *ngIf="!termsOffre && ponctuelHourMontant" class="form-group">
-                    <input type="number" class="form-control" min="1" max="24" name="Nombre" [(ngModel)]="termsEnd.nombre" placeholder="Nombre">
-                </div>
-                <div *ngIf="!termsOffre && ponctuelDayMontant" class="form-group">
-                    <input type="text" class="form-control" min="1" max="31" name="Nombre" [(ngModel)]="termsEnd.nombre" placeholder="Nombre">
-                </div>
-                <div *ngIf="!termsOffre && ponctuelWeekMontant" class="form-group">
-                    <input type="text" class="form-control"  min="1" max="4" name="Nombre" [(ngModel)]="termsEnd.nombre" placeholder="Nombre">
-                </div>
-                <div *ngIf="!termsOffre && ponctuelMonthMontant" class="form-group">
-                    <input type="text" class="form-control" min="1" max="12" name="Nombre" [(ngModel)]="termsEnd.nombre" placeholder="Nombre">
+            <div class="divPositionTotalSomme">
+                <span id="labelTotalSomme"> Qu'elle est le montant total de l'offre ? </span>
+                <div id="totalSomme" class="form-group">
+                    <input type="number" class="form-control"  name="Nombre" [(ngModel)]="salary.totalAmount" placeholder="Nombre">
                 </div>
             </div>
         </div>
@@ -40,5 +28,5 @@
 </div>
 
 <div *ngIf="termsOffre">
-    <app-penalty-offre (cancelRegister)="cancelPenaltyOffre($event)" ></app-penalty-offre>
+    <app-final-offre [newOffre]='newOffre' (cancelRegister)="cancelPenaltyOffre($event)" ></app-final-offre>
 </div>

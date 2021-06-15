@@ -1,0 +1,94 @@
+#ProgamLanguageSpam {
+    margin-bottom: 2%;
+}
+
+#LanguageSpam {
+    margin-bottom: 2%;
+}
+
+#divBut {
+	position: relative;
+	height: 125px;
+	border: 1px solid black;
+	margin-bottom: 1%;
+}
+
+#titreBut {
+	display: block;
+	float: left;
+	width: 25%;
+	text-align: center;
+	margin-top: 4%;
+}
+
+#spamBut {
+    display: block;
+    float: left;
+    width: 75%;
+    background-color: #D3D3D3;
+    height: 100%;
+	text-align: center;
+	padding-top: 1%;
+}
+
+#spamBut:hover {
+    background-color: white;
+}
+
+#divDescription {
+	position: relative;
+	height: 300px;
+	border: 1px solid black;
+	margin-bottom: 1%;
+}
+
+#titreDescription {
+	display: block;
+	float: left;
+	width: 25%;
+	text-align: center;
+	margin-top: 12%;
+}
+
+#spamDescription {
+	display: block;
+	float: left;
+	width: 75%;
+	background-color: #D3D3D3;
+	height: 100%;
+	text-align: center;
+	padding-top: 1%;
+}
+
+#spamDescription:hover {
+    background-color: white;
+}
+
+#divDescriptionFreelance {
+	position: relative;
+	height: 300px;
+	border: 1px solid black;
+	margin-bottom: 1%;
+}
+
+#titreDescriptionFreelance {
+	display: block;
+	float: left;
+	width: 25%;
+	text-align: center;
+	margin-top: 12%;
+}
+
+#spamDescriptionFreelance {
+	display: block;
+	float: left;
+	width: 75%;
+	background-color: #D3D3D3;
+	height: 100%;
+	text-align: center;
+	padding: 1%;
+}
+
+#spamDescriptionFreelance:hover {
+    background-color: white;
+}

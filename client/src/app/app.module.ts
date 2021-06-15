@@ -30,11 +30,10 @@ import { NextEmployementDetailComponent } from './compte/emploi/nextEmployement/
 import { EmployementComponent } from './compte/emploi/employement/employement.component';
 import { LanguageComputerOffreComponent } from './offres/create-offre/language-computer-offre/language-computer-offre.component';
 import { LanguageSpeakOffreComponent } from './offres/create-offre/language-speak-offre/language-speak-offre.component';
-import { SalaryOffreComponent } from './offres/create-offre/salary-offre/salary-offre.component';
-import { PenaltyOffreComponent } from './offres/create-offre/penalty-offre/penalty-offre.component';
 import { TermsOffreComponent } from './offres/create-offre/terms-offre/terms-offre.component';
 import { MatCheckboxModule } from "@angular/material/Checkbox";
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { FinalOffreComponent } from './offres/create-offre/final-offre/final-offre.component';
 
 @NgModule({
   declarations: [
@@ -62,9 +61,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     EmployementComponent,
     LanguageComputerOffreComponent,
     LanguageSpeakOffreComponent,
-    SalaryOffreComponent,
-    PenaltyOffreComponent,
-    TermsOffreComponent
+    TermsOffreComponent,
+    FinalOffreComponent
   ],
   imports: [
     BrowserModule,

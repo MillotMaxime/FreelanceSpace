@@ -1,5 +1,23 @@
 <div *ngIf="!descriptif" id="all">
-    <h2 class="text-center text-primary">Créer votre besoin</h2>
+    <h2 class="titre text-center text-primary">Créer votre besoin</h2>
+    <hr>
+    <div class="form-group text-center">
+        <h4 id="pTypeProjet" class="sm-3 md-3 lg-3 xl-3"> Qu'elle est type de projet allez-vous ? </h4>
+        <mat-button-toggle-group id="typeProjet" (change)="typeOffer(group.value)" #group="matButtonToggleGroup">
+            <mat-button-toggle value="Site">
+                Site
+            </mat-button-toggle>
+            <mat-button-toggle value="Logiciel">
+                Logiciel
+            </mat-button-toggle>
+            <mat-button-toggle value="Mobile">
+                Mobile
+            </mat-button-toggle>
+            <mat-button-toggle value="Autre">
+                Autre
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
     <div id="allName" class="form-group">
         <hr>
         <span id="spamName" class="sm-3 md-3 lg-3 xl-3"> Qu'elle est le nom de votre projet ? </span>
@@ -7,11 +25,23 @@
     </div>
     <div id="allDescription" class="form-group">
         <hr>
-        <span id="spamDescription" > Décrivez votre projet : qu'elles sont but ? Qu'elle type d'informaticien recherchez-vous ? </span>
+        <span id="spamDescription" > Qu'elle est le but du projet ? </span>
+        <textarea id="description" class="form-control" name="But" [(ngModel)]="but" placeholder="But">
+        </textarea>
+    </div>
+    <div id="allDescription" class="form-group">
+        <hr>
+        <span id="spamDescription" > Décrivez votre projet : Voulez-vous un site ou un logiciel ? Combien d'écran ou de page le projet aura besoin le projet ? etc... </span>
         <textarea id="description" class="form-control" name="Description" [(ngModel)]="description" placeholder="Description">
         </textarea>
     </div>
-    <div class="text-center">
+    <div id="allDescription" class="form-group">
+        <hr>
+        <span id="spamDescription" > Quel type de freelanceur recherchez-vous ? </span>
+        <textarea id="description" class="form-control" name="Description Freelance" [(ngModel)]="descriptionFreelance" placeholder="Description Freelance">
+        </textarea>
+    </div>
+    <div id="groupeButton" class="text-center">
         <button (click)="cancel()" class="btn btn-default mr-2" type="button">Cancel</button>
         <button (click)="descriptifToggle()" class="btn btn-primary btn-lg mr-2">Next</button>
     </div>
